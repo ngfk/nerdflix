@@ -1,7 +1,10 @@
 <template>
   <header>
     <Nav />
-    <slot />
+
+    <router-link to="/">
+      <Logo />
+    </router-link>
 
     <div class="like-count">
       <Icon name="star" />
@@ -14,6 +17,7 @@
 <script lang="ts" setup>
 import { useMovieStore } from '../store/movie-store';
 import Icon from './Icon.vue';
+import Logo from './Logo.vue';
 import Nav from './Nav.vue';
 
 const store = useMovieStore();

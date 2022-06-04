@@ -3,18 +3,30 @@ import { RouteRecordRaw } from 'vue-router';
 export const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('../page/Home.vue'),
-  },
-  {
-    path: '/series',
-    component: () => import('../page/Series.vue'),
-  },
-  {
-    path: '/movies',
-    component: () => import('../page/Movies.vue'),
+    component: () => import('../layout/MainLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('../page/Home.vue'),
+      },
+      {
+        path: 'series',
+        component: () => import('../page/Series.vue'),
+      },
+      {
+        path: 'movies',
+        component: () => import('../page/Movies.vue'),
+      },
+    ],
   },
   {
     path: '/:catchAll(.*)*',
-    component: () => import('../page/Error404.vue'),
+    component: () => import('../layout/EmptyLayout.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('../page/Error404.vue'),
+      },
+    ],
   },
 ];

@@ -1,5 +1,9 @@
 <template>
-  <div class="movie-card">
+  <div
+    class="movie-card"
+    @mouseleave="hovered = false"
+    @mouseover="hovered = true"
+  >
     <div class="movie-card__poster">
       <img
         v-if="image"
@@ -8,6 +12,9 @@
         @error="image = false"
       />
       <p v-else>Image not found</p>
+      <div v-if="hovered" class="movie-card__overlay">
+        <p>{{ movie.rating }}</p>
+      </div>
     </div>
 
     <p class="title">{{ movie.title }}</p>
@@ -25,6 +32,7 @@ interface Props {
 
 defineProps<Props>();
 
+const hovered = ref(false);
 const image = ref(true);
 </script>
 
@@ -44,18 +52,27 @@ const image = ref(true);
     background-color: #131313;
     overflow: hidden;
 
-    img,
-    p {
+    > * {
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
+      bottom: 0;
       text-align: center;
     }
 
     p {
       opacity: 0.7;
     }
+  }
+
+  &__overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    font-size: 52px;
+    font-weight: 300;
   }
 
   .title {

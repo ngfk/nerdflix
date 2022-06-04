@@ -79,6 +79,10 @@ const image = ref(true);
     margin: 21px 0 4px 0;
     font-size: 12px;
     line-height: 14px;
+    max-width: 182px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   .year {

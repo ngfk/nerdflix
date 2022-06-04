@@ -1,6 +1,6 @@
 <template>
   <div class="movie-grid">
-    <MovieCard v-for="movie of movies" :movie="movie" />
+    <MovieCard v-for="movie of movies" :key="movie.idIMDB" :movie="movie" />
   </div>
 </template>
 

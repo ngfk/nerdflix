@@ -3,12 +3,15 @@
     :placeholder="placeholder"
     :type="type"
     :value="modelValue"
-    @input="e => $emit('update:modelValue', (e.target as HTMLInputElement).value)"
+    @input="e => debounceUpdate( (e.target as HTMLInputElement).value)"
   />
 </template>
 
 <script lang="ts" setup>
+import { debounce } from '../util/debounce';
+
 interface Props {
+  debounce?: number;
   modelValue: string;
   placeholder: string;
   type: string;
@@ -18,8 +21,14 @@ interface Emits {
   (eventName: 'update:modelValue', value: string): void;
 }
 
-defineProps<Props>();
-defineEmits<Emits>();
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
+
+const debounceUpdate = debounce(update, props.debounce ?? 0);
+
+function update(value: string) {
+  emit('update:modelValue', value);
+}
 </script>
 
 <style lang="scss" scoped>

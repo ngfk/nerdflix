@@ -9,6 +9,8 @@
   },
   "prettier": "./config/prettier.config.js",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "pinia": "^2.0.14",
     "vue": "^3.2.25",
     "vue-router": "^4.0.15"

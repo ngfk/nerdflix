@@ -2,15 +2,20 @@
   <header>
     <Nav />
     <slot />
-    <div class="like-count">5</div>
+
+    <div class="like-count">
+      <Icon name="star" />
+      5
+    </div>
   </header>
 </template>
 
 <script lang="ts" setup>
+import Icon from './Icon.vue';
 import Nav from './Nav.vue';
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 header {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -22,5 +27,10 @@ header {
 
 .like-count {
   text-align: right;
+  margin: 28px;
+
+  svg {
+    color: #f8e71c;
+  }
 }
 </style>

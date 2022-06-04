@@ -6,7 +6,7 @@
   </section>
 
   <section>
-    <MovieCard v-if="store.movies?.length" :movie="store.movies[0]" />
+    <MovieGrid v-if="store.movies?.length" :movies="store.movies" />
   </section>
 </template>
 
@@ -14,7 +14,7 @@
 import { onMounted, ref } from 'vue';
 
 import Input from '../component/Input.vue';
-import MovieCard from '../component/MovieCard.vue';
+import MovieGrid from '../component/MovieGrid.vue';
 import Title from '../component/Title.vue';
 import { useMovieStore } from '../store/movie-store';
 

@@ -1,16 +1,26 @@
-# Vue 3 + TypeScript + Vite
+# Nerdflix
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Installatie & starten
 
-## Recommended IDE Setup
+```sh
+$ npm i
+$ npm run dev
+```
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+## Opmerkingen
 
-## Type Support For `.vue` Imports in TS
+### Framework & Talen
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+Heb expres geen component framework gebruikt omdat het maar om een klein aantal
+componenten gaat met custom styling.
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+- Vue
+- Vite
+- Typescript
+- Scss
+- Pinia
+- Fontawesome
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+### Data
+
+Viel me op dat een aantal image urls niet meer werken, heb niet de moeite genomen om de juiste plaatjes bij elkaar te zoeken, in plaats daar van krijg je een "Image not found" melding. De data wordt ingeladen via een pinia store `src/store/movie-store.ts`.

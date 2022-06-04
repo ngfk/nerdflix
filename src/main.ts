@@ -8,7 +8,7 @@ import { store } from './store';
 import { router } from './router';
 import App from './App.vue';
 
-fa.add(FAR.faStar, FAS.faSearch, FAS.faSquare, FAS.faStar);
+fa.add(FAR.faStar, FAS.faSearch, FAS.faSort, FAS.faSquare, FAS.faStar);
 
 const app = createApp(App);
 app.use(store);

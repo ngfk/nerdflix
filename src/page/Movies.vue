@@ -8,6 +8,22 @@
       placeholder="Search for a title"
       type="search"
     />
+
+    <Select
+      v-model="sortOrder"
+      :options="[
+        { label: '(A-Z)', value: 'asc' },
+        { label: '(Z-A)', value: 'desc' },
+      ]"
+      prefix="Title"
+    />
+    <Select
+      v-model="sortBy"
+      :options="[
+        { label: 'Rating', value: 'rating' },
+        { label: 'Title', value: 'title' },
+      ]"
+    />
   </section>
 
   <section class="movies">
@@ -27,11 +43,15 @@ import { computed, onMounted, ref } from 'vue';
 
 import Input from '../component/Input.vue';
 import MovieGrid from '../component/MovieGrid.vue';
+import Select from '../component/Select.vue';
 import Spinner from '../component/Spinner.vue';
 import Title from '../component/Title.vue';
 import { useMovieStore } from '../store/movie-store';
 
 const query = ref('');
+const sortBy = ref('rating');
+const sortOrder = ref('asc');
+
 const store = useMovieStore();
 
 const movies = computed(() => {

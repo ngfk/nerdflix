@@ -29,19 +29,39 @@ header {
   top: 0;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 76px auto;
+  grid-template-areas:
+    '.. lg lc'
+    'nv nv nv';
+  align-items: center;
+  padding: 0 32px;
+  width: 100%;
   background-color: #131313;
   color: #fff;
-  align-items: center;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   z-index: 1;
+
+  nav {
+    grid-area: nv;
+  }
+
+  > a {
+    grid-area: lg;
+  }
+
+  .like-count {
+    grid-area: lc;
+    text-align: right;
+
+    svg {
+      color: #f8e71c;
+    }
+  }
 }
 
-.like-count {
-  text-align: right;
-  margin: 28px;
-
-  svg {
-    color: #f8e71c;
+@media screen and (min-width: 1024px) {
+  header {
+    grid-template-areas: 'nv lg lc';
   }
 }
 </style>

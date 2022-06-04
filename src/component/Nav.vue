@@ -15,10 +15,11 @@ nav {
     margin: 0;
     padding: 0;
     list-style-type: none;
+    justify-content: center;
 
     li {
       position: relative;
-      margin: 28px 25px;
+      margin: 8px 25px;
       line-height: 19px;
     }
   }
@@ -34,12 +35,26 @@ nav {
       &:after {
         content: '';
         position: absolute;
-        bottom: -28px;
+        bottom: -8px;
         display: block;
         background-color: red;
         height: 4px;
         width: 100%;
       }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  nav ul {
+    justify-content: flex-start;
+
+    li {
+      margin: 28px 25px;
+    }
+
+    a.router-link-exact-active:after {
+      bottom: -28px;
     }
   }
 }

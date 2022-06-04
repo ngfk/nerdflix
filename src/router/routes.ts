@@ -21,7 +21,7 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: '/:catchAll(.*)*',
-    component: () => import('../layout/EmptyLayout.vue'),
+    component: () => import('../layout/MainLayout.vue'),
     children: [
       {
         path: '',

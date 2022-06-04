@@ -13,12 +13,8 @@
       />
       <p v-else>Image not found</p>
       <div v-if="hovered" :class="{ liked, overlay: true }">
-        <button>
-          <Icon
-            name="star"
-            :prefix="liked ? 'fas' : 'far'"
-            @click="() => $emit('like', movie)"
-          />
+        <button @click="() => $emit('like', movie)">
+          <Icon name="star" :prefix="liked ? 'fas' : 'far'" />
         </button>
 
         <p>{{ movie.rating }}</p>

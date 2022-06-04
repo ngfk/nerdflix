@@ -1,6 +1,12 @@
 <template>
   <div class="movie-grid">
-    <MovieCard v-for="movie of movies" :key="movie.idIMDB" :movie="movie" />
+    <MovieCard
+      v-for="movie of movies"
+      :key="movie.idIMDB"
+      :liked="likes?.includes(movie.idIMDB)"
+      :movie="movie"
+      @like="() => $emit('like', movie)"
+    />
   </div>
 </template>
 
@@ -10,10 +16,16 @@ import MovieCard from './MovieCard.vue';
 import { Movie } from '../model/movie';
 
 interface Props {
+  likes?: string[];
   movies: Movie[];
 }
 
+interface Emits {
+  (eventName: 'like', movie: Movie): void;
+}
+
 defineProps<Props>();
+defineEmits<Emits>();
 </script>
 
 <style lang="scss" scoped>

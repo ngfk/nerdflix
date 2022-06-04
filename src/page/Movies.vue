@@ -12,7 +12,12 @@
 
   <section class="movies">
     <Spinner v-if="!movies" />
-    <MovieGrid v-else-if="movies.length" :movies="movies" />
+    <MovieGrid
+      v-else-if="movies.length"
+      :likes="store.likes"
+      :movies="movies"
+      @like="movie => store.likeMovie(movie)"
+    />
     <p v-else>No Movies found...</p>
   </section>
 </template>

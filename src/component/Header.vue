@@ -5,14 +5,18 @@
 
     <div class="like-count">
       <Icon name="star" />
-      5
+      &nbsp;
+      {{ store.likes.length }}
     </div>
   </header>
 </template>
 
 <script lang="ts" setup>
+import { useMovieStore } from '../store/movie-store';
 import Icon from './Icon.vue';
 import Nav from './Nav.vue';
+
+const store = useMovieStore();
 </script>
 
 <style lang="scss" scoped>

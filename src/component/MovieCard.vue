@@ -4,7 +4,7 @@
     @mouseleave="hovered = false"
     @mouseover="hovered = true"
   >
-    <div class="movie-card__poster">
+    <div class="poster">
       <img
         v-if="image"
         :src="movie.urlPoster"
@@ -12,7 +12,15 @@
         @error="image = false"
       />
       <p v-else>Image not found</p>
-      <div v-if="hovered" class="movie-card__overlay">
+      <div v-if="hovered" :class="{ liked, overlay: true }">
+        <button>
+          <Icon
+            name="star"
+            :prefix="liked ? 'fas' : 'far'"
+            @click="() => $emit('like', movie)"
+          />
+        </button>
+
         <p>{{ movie.rating }}</p>
       </div>
     </div>
@@ -24,13 +32,21 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+
+import Icon from '../component/Icon.vue';
 import { Movie } from '../model/movie';
 
 interface Props {
+  liked?: boolean;
   movie: Movie;
 }
 
+interface Emits {
+  (eventName: 'like', movie: Movie): void;
+}
+
 defineProps<Props>();
+defineEmits<Emits>();
 
 const hovered = ref(false);
 const image = ref(true);
@@ -42,7 +58,7 @@ const image = ref(true);
   flex-flow: column nowrap;
   width: 100%;
 
-  &__poster {
+  .poster {
     position: relative;
     padding-top: min(calc((3 / 2) * 100%), 268px);
     width: 100%;
@@ -66,13 +82,31 @@ const image = ref(true);
     }
   }
 
-  &__overlay {
+  .overlay {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.7);
     font-size: 52px;
     font-weight: 300;
+
+    button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 22px;
+      padding: 12px;
+      background-color: transparent;
+      border: none;
+      color: #fff;
+      opacity: 0.5;
+      cursor: pointer;
+    }
+
+    &.liked button {
+      color: #f8e71c;
+      opacity: 1;
+    }
   }
 
   .title {

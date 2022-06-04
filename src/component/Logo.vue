@@ -41,7 +41,7 @@
   </svg>
 </template>
 
-<style>
+<style scoped>
 svg {
   color: #e50914;
 }

@@ -1,10 +1,15 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import { Movie } from '../model/movie';
 
 export const useMovieStore = defineStore('movie', () => {
   const movies = ref<Movie[] | null>(null);
+  const liked = ref(new Set<string>());
+
+  const likes = computed(() => {
+    return Array.from(liked.value);
+  });
 
   async function download(options: { force?: boolean } = {}) {
     if (movies.value && !options.force) return;
@@ -18,5 +23,11 @@ export const useMovieStore = defineStore('movie', () => {
     }
   }
 
-  return { download, movies };
+  function likeMovie(movie: Movie) {
+    const { idIMDB: id } = movie;
+    if (liked.value.has(id)) liked.value.delete(id);
+    else liked.value.add(id);
+  }
+
+  return { download, movies, likeMovie, likes };
 });

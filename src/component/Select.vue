@@ -49,7 +49,7 @@ onUnmounted(() => window.removeEventListener('click', handleExternalClick));
 <style lang="scss" scoped>
 .select {
   position: relative;
-  width: 150px;
+  width: 100%;
   color: #fff;
   user-select: none;
 

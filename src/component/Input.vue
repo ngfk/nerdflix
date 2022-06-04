@@ -40,7 +40,6 @@ function update(value: string) {
 <style lang="scss" scoped>
 .input {
   position: relative;
-  max-width: 394px;
   width: 100%;
 
   input {

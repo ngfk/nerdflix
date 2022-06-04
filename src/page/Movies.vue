@@ -32,7 +32,9 @@
   </section>
 
   <section class="movies">
-    <Spinner v-if="!movies" />
+    <div v-if="!movies" class="spinner">
+      <Spinner />
+    </div>
     <MovieGrid
       v-else-if="movies.length"
       :likes="store.likes"
@@ -83,18 +85,18 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 section {
-  margin: 0 108px;
+  padding: 0 16px;
 }
 
 .action-bar {
-  margin-top: -54px;
-  margin-bottom: 56px;
-
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
   grid-template-areas:
-    '.. lb'
-    'sr so';
+    'sr'
+    'so';
+  margin-top: -26px;
+  margin-bottom: 56px;
 
   .search {
     grid-area: sr;
@@ -102,22 +104,58 @@ section {
 
   .sort-label {
     grid-area: lb;
+    display: none;
     color: #fff;
     opacity: 0.5;
-    margin: 0 0 8px;
   }
 
   .sort {
     grid-area: so;
     display: flex;
+  }
+}
 
-    > :last-child {
-      margin-left: 48px;
+.spinner {
+  text-align: center;
+}
+
+@media screen and (min-width: 1024px) {
+  section {
+    padding: 0 calc((100% - 930px) / 2);
+  }
+
+  .action-bar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      '.. lb'
+      'sr so';
+    margin-top: -54px;
+
+    .search {
+      max-width: 394px;
+    }
+
+    .sort-label {
+      display: block;
+      margin: 0 0 8px;
+    }
+
+    .sort {
+      .select {
+        width: 150px;
+      }
+
+      > :last-child {
+        margin-left: 16px;
+      }
     }
   }
 }
 
-.movies {
-  text-align: center;
+@media screen and (min-width: 1440px) {
+  section {
+    padding: 0 calc((100% - 1110px) / 2);
+  }
 }
 </style>

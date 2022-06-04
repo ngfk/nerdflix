@@ -64,4 +64,10 @@ header {
     grid-template-areas: 'nv lg lc';
   }
 }
+
+@media screen and (min-width: 1440px) {
+  header {
+    padding: 0 calc((100% - 1110px) / 2);
+  }
+}
 </style>

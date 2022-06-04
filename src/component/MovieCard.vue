@@ -21,8 +21,10 @@
       </div>
     </div>
 
-    <p class="title">{{ movie.title }}</p>
-    <p class="year">{{ movie.year }}</p>
+    <div class="caption">
+      <p class="title">{{ movie.title }}</p>
+      <p class="year">{{ movie.year }}</p>
+    </div>
   </div>
 </template>
 
@@ -53,6 +55,7 @@ const image = ref(true);
   display: flex;
   flex-flow: column nowrap;
   width: 100%;
+  align-items: center;
 
   .poster {
     position: relative;
@@ -105,21 +108,26 @@ const image = ref(true);
     }
   }
 
-  .title {
-    margin: 21px 0 4px 0;
-    font-size: 12px;
-    line-height: 14px;
+  .caption {
+    width: 100%;
     max-width: 182px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
 
-  .year {
-    margin: 0;
-    font-size: 12px;
-    line-height: 15px;
-    opacity: 0.5;
+    .title {
+      margin: 21px 0 4px 0;
+      font-size: 12px;
+      line-height: 14px;
+      max-width: 182px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .year {
+      margin: 0;
+      font-size: 12px;
+      line-height: 15px;
+      opacity: 0.5;
+    }
   }
 }
 </style>

@@ -1,13 +1,19 @@
 <template>
-  <input
-    :placeholder="placeholder"
-    :type="type"
-    :value="modelValue"
-    @input="e => debounceUpdate( (e.target as HTMLInputElement).value)"
-  />
+  <div class="input">
+    <input
+      :placeholder="placeholder"
+      :type="type"
+      :value="modelValue"
+      @input="e => debounceUpdate( (e.target as HTMLInputElement).value)"
+    />
+
+    <Icon name="search" />
+  </div>
 </template>
 
 <script lang="ts" setup>
+import Icon from './Icon.vue';
+
 import { debounce } from '../util/debounce';
 
 interface Props {
@@ -32,14 +38,25 @@ function update(value: string) {
 </script>
 
 <style lang="scss" scoped>
-input {
+.input {
+  position: relative;
   max-width: 394px;
   width: 100%;
-  height: 48px;
-  background-color: #131313;
-  border: 1px solid #2e2e2e;
-  color: #fff;
-  border-radius: 6px;
-  padding: 13.5px 20px;
+
+  input {
+    height: 48px;
+    width: inherit;
+    background-color: #131313;
+    border: 1px solid #2e2e2e;
+    color: #fff;
+    border-radius: 6px;
+    padding: 13.5px 48px 13.5px 20px;
+  }
+
+  svg {
+    position: absolute;
+    right: 0;
+    margin: 16px 18px;
+  }
 }
 </style>

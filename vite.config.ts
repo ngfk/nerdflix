@@ -1,7 +1,10 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import vue from '@vitejs/plugin-vue';
+import * as path from 'path';
+import { defineConfig } from 'vite';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()]
-})
+  root: 'src',
+  build: { outDir: path.join(__dirname, 'dist') },
+  publicDir: path.join(__dirname, 'public'),
+  plugins: [vue()],
+});

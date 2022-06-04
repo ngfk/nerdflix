@@ -21,12 +21,15 @@ const store = useMovieStore();
 
 <style lang="scss" scoped>
 header {
+  position: sticky;
+  top: 0;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   background-color: #131313;
   color: #fff;
   align-items: center;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  z-index: 1;
 }
 
 .like-count {

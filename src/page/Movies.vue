@@ -16,8 +16,8 @@
       <Select
         v-model="sortOrder"
         :options="[
-          { label: '(A-Z)', value: 'asc' },
-          { label: '(Z-A)', value: 'desc' },
+          { label: sortBy === 'rating' ? '(0-10)' : '(A-Z)', value: 'asc' },
+          { label: sortBy === 'rating' ? '(10-0)' : '(Z-A)', value: 'desc' },
         ]"
         :prefix="sortBy === 'rating' ? 'Rating' : 'Title'"
       />

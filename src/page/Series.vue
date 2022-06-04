@@ -1,3 +1,7 @@
 <template>
-  <h4>Series</h4>
+  <Title>Series</Title>
 </template>
+
+<script lang="ts" setup>
+import Title from '../component/Title.vue';
+</script>

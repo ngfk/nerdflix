@@ -2,7 +2,7 @@
   <router-view />
 </template>
 
-<style>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 
 html,
@@ -11,6 +11,10 @@ body {
   margin: 0;
   background-color: #1d1d1d;
   color: #fff;
+
+  * {
+    box-sizing: border-box;
+  }
 }
 
 #app {

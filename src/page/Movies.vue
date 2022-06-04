@@ -6,7 +6,7 @@
   </section>
 
   <section>
-    <pre><code>{{store.movies ?? 'null'}}</code></pre>
+    <MovieCard v-if="store.movies?.length" :movie="store.movies[0]" />
   </section>
 </template>
 
@@ -14,6 +14,7 @@
 import { onMounted, ref } from 'vue';
 
 import Input from '../component/Input.vue';
+import MovieCard from '../component/MovieCard.vue';
 import Title from '../component/Title.vue';
 import { useMovieStore } from '../store/movie-store';
 

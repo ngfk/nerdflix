@@ -1,6 +1,6 @@
 <template>
   <div :class="{ select: true, open }">
-    <div class="trigger" @click="open = !open">
+    <div class="trigger" ref="el" @click="open = !open">
       {{ prefix ? prefix + ' ' : '' }}
       {{ options.find(o => o.value === modelValue)?.label }}
 
@@ -10,7 +10,7 @@
       <li
         v-for="option of options"
         :key="option.value"
-        @click="() => select(option.value)"
+        @click="() => $emit('update:modelValue', option.value)"
       >
         {{ option.label }}
       </li>
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import Icon from './Icon.vue';
 
 interface Props {
@@ -33,14 +33,17 @@ interface Emits {
 }
 
 defineProps<Props>();
-const emit = defineEmits<Emits>();
+defineEmits<Emits>();
 
+const el = ref<HTMLDivElement | null>(null);
 const open = ref(false);
 
-function select(value: string) {
-  emit('update:modelValue', value);
-  open.value = false;
+function handleExternalClick(event: MouseEvent) {
+  if (event.target !== el.value) open.value = false;
 }
+
+onMounted(() => window.addEventListener('click', handleExternalClick));
+onUnmounted(() => window.removeEventListener('click', handleExternalClick));
 </script>
 
 <style lang="scss" scoped>

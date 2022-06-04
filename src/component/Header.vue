@@ -1,0 +1,26 @@
+<template>
+  <header>
+    <Nav />
+    <slot />
+    <div class="like-count">5</div>
+  </header>
+</template>
+
+<script lang="ts" setup>
+import Nav from './Nav.vue';
+</script>
+
+<style scoped>
+header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  background-color: #131313;
+  color: #fff;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.like-count {
+  text-align: right;
+}
+</style>

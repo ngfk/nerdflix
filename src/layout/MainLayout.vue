@@ -1,15 +1,14 @@
 <template>
-  <header>
-    <nav>
-      <ul>
-        <li><router-link to="/">Homepage</router-link></li>
-        <li><router-link to="/series">Series</router-link></li>
-        <li><router-link to="/movies">Movies</router-link></li>
-      </ul>
-    </nav>
-  </header>
+  <Header>
+    <Logo />
+  </Header>
 
   <main>
     <router-view />
   </main>
 </template>
+
+<script lang="ts" setup>
+import Header from '../component/Header.vue';
+import Logo from '../component/Logo.vue';
+</script>

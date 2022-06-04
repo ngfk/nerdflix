@@ -4,26 +4,31 @@
   <section class="action-bar">
     <Input
       v-model="query"
+      class="search"
       :debounce="200"
       placeholder="Search for a title"
       type="search"
     />
 
-    <Select
-      v-model="sortOrder"
-      :options="[
-        { label: '(A-Z)', value: 'asc' },
-        { label: '(Z-A)', value: 'desc' },
-      ]"
-      prefix="Title"
-    />
-    <Select
-      v-model="sortBy"
-      :options="[
-        { label: 'Rating', value: 'rating' },
-        { label: 'Title', value: 'title' },
-      ]"
-    />
+    <p class="sort-label">Sort By</p>
+
+    <div class="sort">
+      <Select
+        v-model="sortOrder"
+        :options="[
+          { label: '(A-Z)', value: 'asc' },
+          { label: '(Z-A)', value: 'desc' },
+        ]"
+        :prefix="sortBy === 'rating' ? 'Rating' : 'Title'"
+      />
+      <Select
+        v-model="sortBy"
+        :options="[
+          { label: 'Rating', value: 'rating' },
+          { label: 'Title', value: 'title' },
+        ]"
+      />
+    </div>
   </section>
 
   <section class="movies">
@@ -55,12 +60,20 @@ const sortOrder = ref('asc');
 const store = useMovieStore();
 
 const movies = computed(() => {
-  if (!query.value) return store.movies;
   if (!store.movies) return null;
 
-  return store.movies.filter(movie =>
-    movie.title.toLowerCase().includes(query.value.toLowerCase()),
-  );
+  return store.movies
+    .filter(movie => {
+      const value = query.value?.trim().toLowerCase();
+      return value ? movie.title.toLowerCase().includes(value) : true;
+    })
+    .sort((a, b) => {
+      const c =
+        sortBy.value === 'rating'
+          ? parseFloat(b.rating) - parseFloat(a.rating)
+          : a.title.toLowerCase().localeCompare(b.title.toLowerCase());
+      return sortOrder.value === 'asc' ? c : -c;
+    });
 });
 
 onMounted(async () => {
@@ -74,8 +87,34 @@ section {
 }
 
 .action-bar {
-  margin-top: -24px;
+  margin-top: -54px;
   margin-bottom: 56px;
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    '.. lb'
+    'sr so';
+
+  .search {
+    grid-area: sr;
+  }
+
+  .sort-label {
+    grid-area: lb;
+    color: #fff;
+    opacity: 0.5;
+    margin: 0 0 8px;
+  }
+
+  .sort {
+    grid-area: so;
+    display: flex;
+
+    > :last-child {
+      margin-left: 48px;
+    }
+  }
 }
 
 .movies {

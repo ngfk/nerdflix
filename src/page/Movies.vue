@@ -4,15 +4,25 @@
   <section class="action-bar">
     <Input v-model="query" placeholder="Search for a title" type="search" />
   </section>
+
+  <section>
+    <pre><code>{{store.movies ?? 'null'}}</code></pre>
+  </section>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 import Input from '../component/Input.vue';
 import Title from '../component/Title.vue';
+import { useMovieStore } from '../store/movie-store';
 
 const query = ref('');
+const store = useMovieStore();
+
+onMounted(async () => {
+  await store.download();
+});
 </script>
 
 <style lang="scss" scoped>
